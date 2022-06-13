@@ -34,7 +34,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: ${{github.job}}-${{github.ref}}-${{github.run_number}}
+          name: '${{github.job}}-${{github.ref}}-${{github.run_number}}'
           path: 'target/*'
           retention-days: 7
 
@@ -58,4 +58,24 @@ jobs:
           path: |
             target/surefire-reports/*
             target/site/jacoco/*
+          retention-days: 7
+
+  package:
+    runs-on: self-hosted
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Package
+        run: mvn package
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: $GITHUB_JOB-$GITHUB_RUN_NUMBER
+          path: target/*.war
           retention-days: 7
