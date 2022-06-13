@@ -31,9 +31,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: Compile
         run: mvn compile
-      - name: 'Upload Artifact'
-          uses: actions/upload-artifact@v3
-          with:
-            name: '${{env.GITHUB_JOB}}-${{env.GITHUB_RUN_NUMBER}}'
-            path: 'target/*'
-            retention-days: 7
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: '${{env.GITHUB_JOB}}-${{env.GITHUB_RUN_NUMBER}}'
+          path: 'target/*'
+          retention-days: 7
