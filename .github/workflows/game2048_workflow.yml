@@ -34,7 +34,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: $GITHUB_JOB - $GITHUB_RUN_NUMBER
+          name: $Env.GITHUB_JOB - $Env.GITHUB_RUN_NUMBER
           path: 'target/*'
           retention-days: 7
 
