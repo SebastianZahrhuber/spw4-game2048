@@ -42,7 +42,6 @@ jobs:
     runs-on: self-hosted
     needs: build
     steps:
-      - uses: actions/checkout@v3
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -64,7 +63,6 @@ jobs:
     runs-on: self-hosted
     needs: build
     steps:
-      - uses: actions/checkout@v3
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -94,7 +92,7 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v3
         with:
-          name: package
+          name: 'package-${{github.run_number}}'
       - name: Remove Files
         run: rm -rf /usr/local/tomcat/webapps/*
       - name: Deploy
